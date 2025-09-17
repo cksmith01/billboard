@@ -1,0 +1,15 @@
+- make sure the app can be compiled both front and backend
+- refactor the frontend to use the new Bill bean (rather than BillItem)
+- how to call api from react (eg not useEffect)
+- unit tests
+
+*** DONE ***
+x reconfigure for SQLite DB
+x create a sql DDL
+x implement a job(s) to download the data from utleg.gov
+    developer token: 2B3AB315A6918FFB254F00F0CED98CE6
+x implement a commandline runner to create the database
+x missing data: onetime, ongoing, effective date ...
+    do you want to get them from:
+        https://s.utleg.gov/bigboard/bill/list/2025
+

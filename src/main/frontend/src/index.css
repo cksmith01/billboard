@@ -1,0 +1,498 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Dancing+Script&display=swap');
+
+body {
+  background-color: #fff;
+  color: #000;
+  padding: 0;
+  margin: 0;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#root {
+  clear: both;
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+  width: 100%;
+  height: 100%;
+}
+
+#container {
+  clear: both;
+  flex-flow: flex;
+  margin: 0;
+  margin-top: 42px;
+  padding: 2px 5px 2px 5px;
+  background-color: #fff;
+  font-size: 90%;
+}
+
+.navigation {
+  flex-flow: column;
+  text-align: center;
+  float: left;
+  margin: 0px 10px -2px 0px;
+}
+
+.pageTitle {
+  width: 100%;
+  column-span: all;
+  color: #999;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 1.2em;
+  text-align: left;
+  text-indent: 50px;
+  /* background-color: #4475e8; */
+  background-color: #fff;
+  padding: 3px;
+  /* border: 1px #4475e8 solid;
+  border-radius: 5px; */
+  margin: 0;
+}
+
+.subTitle {
+  font-size: 1em;
+  color: #888;
+  font-family: 'Archivo Black', sans-serif;
+  text-align: left;
+}
+
+a {
+  font-weight: 500;
+  color: #4475e8;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #424bee;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+h3 {
+  font-family: 'Archivo Black', sans-serif;
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 1.5em;
+}
+
+button {
+  border-radius: 7px;
+  border: 1px #ddd solid;
+  padding: 8px 12px;
+  font-size: 85%;
+  font-weight: normal !important;
+  font-family: inherit !important;
+  background-color: #ddd;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  color: #6e8eda;
+  outline: transparent;
+}
+button:hover {
+  /* box-shadow: #8396ed 2px 2px 1px; */
+  /* border: 1px #7c91f1 solid; */
+  /* color: #5e85e0; */
+  background-color: #6e8eda;  
+  color: #fff;
+  outline: transparent;
+}
+
+.p-column-filter-menu-button:hover svg {
+  color: #fff;
+}
+button:hover .p-button-icon, button:hover a, button:hover i, .p-button:hover i {
+  color: #fff;
+}
+
+.p-dialog-header-icon {
+  width: 2.25rem;
+  height: 2.25rem;
+}
+
+.p-dialog-header {
+  /* color: rgb(227, 126, 3); */
+  color: black;
+}
+
+button:focus,
+button:focus-visible {
+  /* outline: 2px auto -webkit-focus-ring-color; */
+  outline: transparent;
+}
+
+.ui-datatable-resizable thead th, .ui-datatable-resizable tbody td, .ui-datatable-resizable tfoot td {
+  white-space: nowrap;
+  overflow: hidden;
+  border-width: 1px;
+  border-style: none;
+  text-overflow: ellipsis;
+  padding: 0.5px!important;
+}
+.p-datatable-header {
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+.p-datatable-tbody * td {
+  font-size: 85%;
+  padding: 2px;
+  vertical-align: top;
+}
+.p-datatable-thead * th, .p-column-title {
+  font-size: 90%;
+  padding: 2px;
+  white-space: nowrap;
+}
+
+.p-paginator, .p-dropdown-trigger, .p-inputtext {
+  font-size: 90%;
+  border-radius: 7px;
+}
+
+#searchField {
+  padding-top: 7px;
+  padding-bottom: 7px;
+  margin: 0;
+}
+
+.p-menubar {
+  padding: 0;
+  text-align: right;
+}
+
+.p-menubar li {
+  text-align: right;
+}
+
+.p-menuitem-text {
+  font-size: 90%;
+}
+
+.p-datatable.p-datatable-striped .p-datatable-tbody > tr.p-row-odd {
+  background-color: rgba(200, 200, 200, 0.1);
+}
+.p-datatable-thead * th {
+  background-color: #dbd9d9;
+}
+
+.logo {
+  background-color: transparent;
+  color: #fff;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 1.5em;
+  font-style: italic;
+  /* text-shadow: #000 1px 0 3px; */
+}
+
+.cardTitle {
+  background-color: #ccc;
+}
+
+.p-card .p-card-title {
+  font-size: .9rem;
+  margin-bottom: 0.5rem;
+  max-height: 500px;
+  max-width: 250px;
+}
+
+.p-card-body {
+  max-height: 500px;
+  max-width: 250px;
+}
+
+.cardBill {
+  font-size: 90%;
+  padding: 2px 6px;
+  margin: 2px 2px;
+  border: 1px gray dotted;
+  border-radius: 5px;
+  max-width: 72px;
+  float: left;
+}
+
+.card {
+  clear: both;
+  float: left;
+  margin: 5px;
+  border: 1px #ccc solid;
+  border-radius: 5px;
+  overflow-y: auto;
+  scroll-behavior: auto;
+  max-width: 500px;
+  min-width: 500px;
+  /* max-height: 500px; */
+  box-shadow: rgba(0, 0, 0, 0.15) 1.5px 1.5px 2.6px;
+  vertical-align: top;
+}
+
+.cardTitle {
+  background-color: #999;
+  color: #fff;
+  /* font-weight: bold; */
+  padding: 3px;
+  text-align: center;
+}
+
+.linkDiv {
+  padding: 3px;
+  text-indent: 10px;
+  cursor: pointer;
+  border: 1px #fff solid;
+  border-radius: 5px;
+}
+.linkDiv:hover, .linkDiv2:hover {
+  background-color: #f7faa7;
+}
+
+.linkDiv2 {
+  padding: 3px;
+  text-indent: 10px;
+  cursor: pointer;
+  border: 1px #fff solid;
+  border-radius: 5px;
+  background-color: #eee;
+}
+.linkDiv2:hover {
+  background-color: #f7faa7;
+}
+
+.p-column-filter-menu-button {
+  margin-left: 4px;
+}
+.p-column-filter-menu-button > svg {
+  color: #666;
+  margin: -3px;
+}
+
+.p-dialog {
+  z-index: 10000;
+}
+
+.p-dialog, .p-dialog-content {
+  overflow-x: hidden;
+}
+
+.fw-b {
+  font-weight: bold;
+}
+.p5 {
+  padding: 5px;
+}
+
+#aboutPage * li {
+  padding: 3px;
+}
+
+.techNote {
+  font-size: 90%;
+  color: #999;
+  padding: 10px;
+  width: 300px;
+}
+
+.p-inputswitch {
+  transform: scale(.75);
+}
+
+.p-inputswitch.p-inputswitch {
+  margin-top: 0;
+  padding: 0;
+}
+.p-inputswitch.p-inputswitch-checked .p-inputswitch-slider, .p-inputswitch .p-inputswitch-slider {
+  box-shadow: none;
+}
+
+.label {
+  font-weight: bold;
+  padding: 2px;
+  position: relative;
+  float: left;
+  border: 0px #2196F3 solid;
+  border-radius: 5px;
+  text-align: right;
+  color: #2196F3;
+  /* width: 100px; */
+  line-height: 1.5rem;
+  text-justify: top;
+  font-size: 11pt;
+}
+
+.clearfix {
+  clear: both;
+  overflow: auto;
+}
+
+.p-dialog-header {
+  padding: 15px;
+}
+
+.statusCardTitle {
+  margin-top: 2px;
+  padding: 5px;
+  border: 0px #2196F3 solid;
+  border-radius: 5px;
+  font-weight: bold;
+  background-color: #eee; 
+  text-indent: 10px;
+}
+
+.statusCardLink {
+  text-indent: 5px;
+  padding: 3px;
+  border: 0px #2196F3 solid;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.statusCardLink:hover {
+  background-color: #f7faa7;
+}
+
+.mutedLink {
+  cursor: none;
+}
+.mutedLink:hover {
+  /* cursor: pointer; */
+}
+.p-menubar {
+  background-color: #4475e8;
+  color: #fff;
+  position: sticky;
+  position: -webkit-sticky; 
+  z-index: 1000; 
+  top: 0; 
+}
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+.p-menuitem-text {
+  color: #fff;
+  /* font-weight: bold; */
+}
+.p-menuitem-link:hover {
+  background-color: #6589df;
+  border-radius: 0;
+}
+.p-datatable, .p-datatable-wrapper, .p-datatable-header, .p-datatable-footer, .p-paginator-bottom {
+  background-color: #fff;
+  border: 0;
+}
+.p-datatable-table:hover tr {
+  cursor: pointer;
+}
+.pi {
+  color: #fff;
+}
+
+.pi2 {
+  color: #4475e8;
+}
+.billCircled {
+  border: 1px orange solid;
+  border-radius: 5px;
+}
+
+.fiscalBill {
+  color: darkgreen;
+  font-weight: bold;
+}
+.fiscalImpact {
+  background-color: #DDFFDD;
+  border-radius: 5px;
+}
+
+
+.p-tabview-nav-link {
+  color: #666;
+  font-size: 90%;
+}
+.p-tabview-nav-link:hover {
+  color: #333;
+}
+[aria-selected|="true"] {
+  color: #4475e8;
+}
+.p-dropdown {
+  border-radius: 7px;
+}
+
+#newListButton {
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-weight: normal !important;
+  transform: scale(1);
+  font-size: .8em;
+}
+
+input::placeholder {
+  color: #ccc;
+}
+.untracked {
+  background-color: #fff transparent;
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+.tracked {
+  background-color: rgb(255,165,0,.5);
+  padding: 1px 4px;
+  border-radius: 3px;
+}
+.circle-icon {
+    height: 16px;
+    width: 16px;
+    text-align: center;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    padding-top: 1px;
+    font-weight: bold;
+}
+.p-timeline-event-content {
+  padding-top: 5px;
+  max-height: 22px;
+}
+.p-timeline-event-opposite {
+  padding: 0;
+  max-height: 25px;
+}
+/* this doesn't seem to work... */
+.p-timeline-event-opposite:last-of-type {
+  padding-top: 5px;
+  min-width: 50px;
+  background-color: orange;
+}
+.revenue {
+  color: green;
+}
+.revenue::before {
+  content: '$';
+}
+
+.cost {
+  color: red;
+}
+.cost::before {
+  content: '$';
+}
+.zero {
+  color: black;
+}
+.zero::before {
+  content: '$';
+}
+
+.warning {
+  font-weight: normal !important;
+  font-size: 10pt;
+  color: darkorange;
+  text-align: right;
+}
