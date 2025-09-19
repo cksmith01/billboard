@@ -6,9 +6,9 @@ import Cookies from "js-cookie";
 import LocalStorage from "./LocalStorage";
 
 export const addRemoveBill = (billNumber, add) => {
-  let list = LocalStorage.create().get("bigboard-bill-list");
+  let list = LocalStorage.create().get("billboard-bill-list");
   if (list == null) {
-    list = Cookies.get("bigboard-bill-list");
+    list = Cookies.get("billboard-bill-list");
   }
 
   if (list == null) {
@@ -32,15 +32,15 @@ export const addRemoveBill = (billNumber, add) => {
   }
 
   list = list.toUpperCase();
-  LocalStorage.create().store("bigboard-bill-list", list);
-  Cookies.set("bigboard-bill-list", list, { expires: 90 });
+  LocalStorage.create().store("billboard-bill-list", list);
+  Cookies.set("billboard-bill-list", list, { expires: 90 });
   return list;
 };
 
 export const isTracked = (billNumber) => {
-  let list = LocalStorage.create().get("bigboard-bill-list");
+  let list = LocalStorage.create().get("billboard-bill-list");
   if (list == null) {
-    list = Cookies.get("bigboard-bill-list");
+    list = Cookies.get("billboard-bill-list");
   }
   if (list == null) {
     list = "";
@@ -49,17 +49,17 @@ export const isTracked = (billNumber) => {
 };
 
 export const getBillList = () => {
-  let list = LocalStorage.create().get("bigboard-bill-list");
+  let list = LocalStorage.create().get("billboard-bill-list");
   if (list == null) {
-    list = Cookies.get("bigboard-bill-list");
+    list = Cookies.get("billboard-bill-list");
   }
   return list;
 };
 
 export const getBillArray = (billList) => {
-  let list = LocalStorage.create().get("bigboard-bill-list");
+  let list = LocalStorage.create().get("billboard-bill-list");
   if (list == null) {
-    list = Cookies.get("bigboard-bill-list");
+    list = Cookies.get("billboard-bill-list");
   }
   let subSet = [];
   if (list.length > 0) {

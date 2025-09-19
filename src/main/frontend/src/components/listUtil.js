@@ -167,7 +167,7 @@ export const changeListName = (index, newName) => {
 };
 
 /**
- * this function fetches the bill list from a cookie (bigboard-bill-list)
+ * this function fetches the bill list from a cookie (billboard-bill-list)
  * and creates a map object (key = "My List") and converts the list from a
  * comma seperated string to an array, a stores new map object in local storage
  */
@@ -179,7 +179,7 @@ export const retrofitBillList = () => {
     );
     return;
   }
-  const listStr = Cookies.get("bigboard-bill-list");
+  const listStr = Cookies.get("billboard-bill-list");
   if (listStr != null && listStr.length > 0 && listStr.indexOf(",") > -1) {
     const _values = listStr.split(",");
     const values = [];
@@ -194,7 +194,7 @@ export const retrofitBillList = () => {
     _billMap.set("My List", []);
   }
   LocalStorage.create().storeBillMap(_billMap);
-  Cookies.remove("bigboard-bill-list");
+  Cookies.remove("billboard-bill-list");
   console.log(
     "retrofitBillList: bill created and saved in local storage",
     _billMap

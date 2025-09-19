@@ -21,7 +21,7 @@ class BillTest {
 
         List<Bill> bills = jsonLoader.getBills();
 
-        System.out.println("size: " + bills.size());
+//        System.out.println("size: " + bills.size());
 
         for (Bill bill : bills) {
             assert (bill.getSponsorID() != null);
@@ -46,7 +46,7 @@ class BillTest {
                 assert (bill.getFloorSponsor() != null);
             }
 
-            System.out.println(bill.getBillNumber() + ": " + bill.getOwner() + " " + bill.getLastActionCode());
+//            System.out.println(bill.getBillNumber() + ": " + bill.getOwner() + " " + bill.getLastActionCode());
         }
 
     }
