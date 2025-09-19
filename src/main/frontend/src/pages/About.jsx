@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Api from "../components/Api";
 import Navigation from "../components/Navigation";
 import { format } from "date-fns";
@@ -206,9 +206,6 @@ function About({ loadDate, sessionDates }) {
             <ul>{userList}</ul>
           </div>
         </div>
-        {/* <Button onClick={getNewlyOwned} title="Newly Owned">
-          <i className="pi pi-external-link" style={{ color: "slateblue" }}></i>
-        </Button> */}
         <Button onClick={addTag} title="Tag User">
           <i className="pi pi-tag" style={{ color: "slateblue" }}></i>
         </Button>

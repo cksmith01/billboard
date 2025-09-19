@@ -4,6 +4,7 @@ import com.cks.billboard.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.logging.Logger;
@@ -83,7 +84,7 @@ public class BillService {
 	public List<ReadingCalItem> getCalendarBillOrder(Integer year) {
 
 //		return queryDao.getCalendarBillOrder(year);
-		return null;
+		return new ArrayList<ReadingCalItem>();
 	}
 
 	public Collection<ActionCode> getActiveActionCodes(Integer year) {

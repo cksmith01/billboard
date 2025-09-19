@@ -1,13 +1,10 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Navigation from "../components/Navigation";
 import { DataTable } from "primereact/datatable";
 import { Button } from "primereact/button";
 import { Column } from "primereact/column";
 import {
   billLinkTemplate,
-  sponsorTemplate,
-  flSponsorTemplate,
-  fiscalTemplate,
   ownerTemplate,
   moneyAbbr,
 } from "../components/utils";
@@ -15,7 +12,6 @@ import { Dialog } from "primereact/dialog";
 import BillDetails from "../components/BillDetails";
 import { TabView, TabPanel } from "primereact/tabview";
 import {
-  retrofitBillList,
   removeBill,
   getBillListByIndex,
   getBillMap,
@@ -27,7 +23,6 @@ import {
 import TimeLineMini from "../components/TimeLineMini";
 
 function MyLists({ billList, actionCodes, loadDate, sessionDates }) {
-  // retrofitBillList();
 
   const [activeIndex, setActiveIndex] = useState(-1);
   const [subList, setSubList] = useState([]);
@@ -236,7 +231,6 @@ function MyLists({ billList, actionCodes, loadDate, sessionDates }) {
             sortOrder={-1}
           >
             <Column field="" header="" body={buildRemoveButton}></Column>
-            {/* <Column field="sessionID" header="Session" sortable></Column> */}
             <Column
               field="billNumber"
               header="#"
@@ -253,12 +247,6 @@ function MyLists({ billList, actionCodes, loadDate, sessionDates }) {
               body={renderTimeline}
               style={{ minWidth: "220px", paddingTop: "5px" }}
             ></Column>
-            {/* <Column
-              field="fiscalTotal"
-              header="Total $"
-              sortable
-              body={fiscalTemplate}
-            ></Column> */}
             <Column
               field="actionCodeDesc"
               header="Last Action"
@@ -279,16 +267,6 @@ function MyLists({ billList, actionCodes, loadDate, sessionDates }) {
               filterField="owner"
               sortable
             ></Column>
-            {/* <Column
-              field="subjectList"
-              header="Subjects"
-              filterField="subjectList"
-            ></Column> */}
-            {/* <Column
-              field="sectionsAffected"
-              header="Code Sections"
-              filterField="sectionsAffected"
-            ></Column> */}
           </DataTable>
           {showModal && <DetailModal />}
           <div style={{ width: "49%", float: "left", padding: "5px" }}>

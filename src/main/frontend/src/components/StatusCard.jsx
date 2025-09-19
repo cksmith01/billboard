@@ -12,12 +12,14 @@ function StatusCard({
 
   const codeMap = new Map();
   const codeArray = statusCodeList.split(",");
+
   // loop through the actionCodes and find the ones that apply
   const usedCodes = actionCodes.filter((code) => {
     if (code.type === "action") {
       if (statusCodeList.indexOf(code.code + ",") > -1) {
         const billsForCode = billList.filter((bill) => {
-          if (bill.actionCode == code.code) {
+          //if (cardTitle === "Governor") console.log("->", bill.lastActionCode, code.code);
+          if (bill.lastActionCode == code.code) {
             return bill;
           }
         });
@@ -34,7 +36,6 @@ function StatusCard({
   codeArray.map((code) => {
     _list += "'" + code + "',";
   });
-  //console.log(_list);
 
   const getLabel = (code) => {
     const labels = actionCodes.filter((item) => {
@@ -56,11 +57,9 @@ function StatusCard({
     return "statusCardLink";
   };
 
-  //   console.log(cardTitle, "codeMap", codeMap);
-
   return (
     <>
-      <div className="statusCardTitle">
+      <div className="statusCardTitle" id={cardTitle}>
         {cardTitle}: {cardTotal} &nbsp;(
         {formatPercent(cardTotal / billList.length)})
       </div>

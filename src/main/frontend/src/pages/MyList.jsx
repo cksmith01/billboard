@@ -1,10 +1,13 @@
-import React from "react";
+/*
+  THIS COMPONENT IS NO LONGER BEING USED !!!  SEE "MyLists"
+*/
+
 import { useState, useEffect } from "react";
 import Navigation from "../components/Navigation";
 import { DataTable } from "primereact/datatable";
 import { Button } from "primereact/button";
 import { Column } from "primereact/column";
-import { FilterMatchMode, FilterOperator } from "primereact/api";
+// import { FilterMatchMode, FilterOperator } from "primereact/api";
 import {
   billLinkTemplate,
   sponsorTemplate,
@@ -21,46 +24,12 @@ import {
   getBillList,
 } from "../components/billList";
 
-import { retrofitBillList } from "../components/listUtil";
+// import { retrofitBillList } from "../components/listUtil";
 
 function MyList({ billList, actionCodes, loadDate, sessionDates }) {
   const [modal, showModal] = useState(false);
   const [selectedBill, setSelectedBill] = useState({});
   const [subList, setSubList] = useState([]);
-
-  const [baseFilters, setBaseFilters] = useState({
-    global: { value: null, matchMode: FilterMatchMode.CONTAINS },
-    billNumber: {
-      operator: FilterOperator.AND,
-      constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }],
-    },
-    primarySponsor: {
-      operator: FilterOperator.AND,
-      constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }],
-    },
-    floorSponsor: {
-      operator: FilterOperator.AND,
-      constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }],
-    },
-    shortTitle: {
-      operator: FilterOperator.AND,
-      constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }],
-    },
-    subjectList: {
-      operator: FilterOperator.AND,
-      constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }],
-    },
-    sectionsAffected: {
-      operator: FilterOperator.AND,
-      constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }],
-    },
-    actionCodeDesc: {
-      operator: FilterOperator.AND,
-      constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }],
-    },
-  });
-  const [filters, setFilters] = useState(baseFilters);
-
   // retrofitBillList();
 
   const onRowClicked = (row) => {
@@ -175,19 +144,7 @@ function MyList({ billList, actionCodes, loadDate, sessionDates }) {
           currentPageReportTemplate="{first} to {last} of {totalRecords}"
           style={{ width: "100%" }}
           dataKey="billNumber"
-          filters={filters}
-          // header={renderHeader}
-          // ref={dataTableExport}
           onRowDoubleClick={onRowClicked}
-          globalFilterFields={[
-            "billNumber",
-            "shortTitle",
-            "primarySponsor",
-            "floorSponsor",
-            "subjectList",
-            "sectionsAffected",
-            "actionCodeDesc",
-          ]}
           emptyMessage="..."
           sortField="lastActionDate"
           sortOrder={-1}

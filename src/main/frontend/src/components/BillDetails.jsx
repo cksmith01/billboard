@@ -5,7 +5,7 @@ import ListSelect from "./ListSelect";
 import TimeLine from "./TimeLine";
 
 function BillDetails({ bill }) {
-  console.log("BillDetails: bill", bill);
+  // console.log("BillDetails: bill", bill);
 
   const formatCurrency = (value) => {
     if (value == null || value == "") {

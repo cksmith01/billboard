@@ -1,10 +1,8 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import Navigation from "../components/Navigation";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Button } from "primereact/button";
-import { FilterMatchMode, FilterOperator } from "primereact/api";
-import { InputText } from "primereact/inputtext";
 import Api from "../components/Api";
 import { getSessionDate } from "../components/getSessionDate";
 import "primeicons/primeicons.css";
@@ -13,65 +11,35 @@ import BillDetails from "../components/BillDetails";
 import { Dialog } from "primereact/dialog";
 
 function Committees({ billList, actionCodes, loadDate, sessionDates }) {
-  const year = getSessionDate();
-
   const [subList, setSubList] = useState([]);
-  const [globalFilterValue, setGlobalFilterValue] = useState("");
   const [modal, showModal] = useState(false);
   const [selectedBill, setSelectedBill] = useState({});
-  
-  const [baseFilters, setBaseFilters] = useState({
-    global: { value: null, matchMode: FilterMatchMode.CONTAINS },
-    billNumber: {
-      operator: FilterOperator.AND,
-      constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }],
-    },
-    primarySponsor: {
-      operator: FilterOperator.AND,
-      constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }],
-    },
-    floorSponsor: {
-      operator: FilterOperator.AND,
-      constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }],
-    },
-    shortTitle: {
-      operator: FilterOperator.AND,
-      constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }],
-    },
-    subjectList: {
-      operator: FilterOperator.AND,
-      constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }],
-    },
-    sectionsAffected: {
-      operator: FilterOperator.AND,
-      constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }],
-    },
-    actionCodeDesc: {
-      operator: FilterOperator.AND,
-      constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }],
-    },
-  });
-  const [filters, setFilters] = useState(baseFilters);
   const [committees, setCommittees] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const year = getSessionDate();
 
   const loadData = async () => {
+    // setLoading(true);
     const api = Api.get();
     await api
       .doGet("/bill/committee/list/" + year)
       .then((response) => response.json())
       .then((data) => {
         setCommittees(data);
-        console.log("load committees succeeded", new Date(), data.length);
+        console.log("load committees succeeded", data);
       })
       .catch((err) => {
         console.error(err);
       });
+      // setLoading(false);
   };
 
   useEffect(() => {
     loadData();
     // eslint-disable-next-line
   }, []);
+
+  // console.log('Committees', 'committees', committees.length, 'billList', billList.length);
 
   const committeeMap = new Map();
   // loop through the committees and find the ones that have bills
@@ -81,9 +49,12 @@ function Committees({ billList, actionCodes, loadDate, sessionDates }) {
         return bill;
       }
     });
+    // console.log('-->', committee.ownerID, billsForCommittee);
     committeeMap.set(committee.ownerID, billsForCommittee);
     return committee;
   });
+
+  console.log('committeeMap', committeeMap);
 
   const showList = (event) => {
     setSubList(committeeMap.get(event.target.id));
@@ -137,31 +108,6 @@ function Committees({ billList, actionCodes, loadDate, sessionDates }) {
           </a>
         }
       </>
-    );
-  };
-
-  const onGlobalFilterChange = (e) => {
-    const value = e.target.value;
-    let _filters = { ...filters };
-    _filters["global"].value = value;
-    setFilters(_filters);
-    setGlobalFilterValue(value);
-  };
-
-  const renderHeader = () => {
-    return (
-      <div className="" style={{ backgroundColor: "#fff", margin: "5px" }}>
-        <span className="p-input-icon-left">
-          <i className="pi pi-search" />
-          <InputText
-            value={globalFilterValue}
-            onChange={onGlobalFilterChange}
-            placeholder="Search"
-            id="searchField"
-            size={50}
-          />
-        </span>
-      </div>
     );
   };
 
@@ -246,27 +192,16 @@ function Committees({ billList, actionCodes, loadDate, sessionDates }) {
             paginator
             rows={25}
             stripedRows
-            // loading={loading}
+            loading={loading}
             totalRecords={subList.length}
             rowsPerPageOptions={[25, 50, 100, 500, 1000]}
             paginatorTemplate="FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink RowsPerPageDropdown"
             currentPageReportTemplate="{first} to {last} of {totalRecords}"
             style={{ width: "100%" }}
             dataKey="billNumber"
-            filters={filters}
-            // header={renderHeader}
             ref={dataTableExport}
             onRowClick={onRowClicked}
             onRowDoubleClick={onDetailRowClicked}
-            globalFilterFields={[
-              "billNumber",
-              "shortTitle",
-              "primarySponsor",
-              "floorSponsor",
-              "subjectList",
-              "sectionsAffected",
-              "actionCodeDesc",
-            ]}
             emptyMessage="No bills found."
           >
             <Column

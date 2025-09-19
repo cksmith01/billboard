@@ -46,7 +46,7 @@ class BillTest {
                 assert (bill.getFloorSponsor() != null);
             }
 
-            System.out.println(bill.toString());
+            System.out.println(bill.getBillNumber() + ": " + bill.getOwner() + " " + bill.getLastActionCode());
         }
 
     }

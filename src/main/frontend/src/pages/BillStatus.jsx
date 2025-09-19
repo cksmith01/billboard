@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Navigation from "../components/Navigation";
 import StatusCard from "../components/StatusCard";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
-import { FilterMatchMode, FilterOperator } from "primereact/api";
 import BillDetails from "../components/BillDetails";
 import { Dialog } from "primereact/dialog";
 import {
@@ -17,43 +16,10 @@ function BillStatus({ billList, loadDate, actionCodes, sessionDates }) {
   const [subList, setSubList] = useState([]);
   const [modal, showModal] = useState(false);
   const [selectedBill, setSelectedBill] = useState({});
-  const [baseFilters, setBaseFilters] = useState({
-    global: { value: null, matchMode: FilterMatchMode.CONTAINS },
-    billNumber: {
-      operator: FilterOperator.AND,
-      constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }],
-    },
-    primarySponsor: {
-      operator: FilterOperator.AND,
-      constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }],
-    },
-    floorSponsor: {
-      operator: FilterOperator.AND,
-      constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }],
-    },
-    shortTitle: {
-      operator: FilterOperator.AND,
-      constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }],
-    },
-    subjectList: {
-      operator: FilterOperator.AND,
-      constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }],
-    },
-    sectionsAffected: {
-      operator: FilterOperator.AND,
-      constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }],
-    },
-    actionCodeDesc: {
-      operator: FilterOperator.AND,
-      constraints: [{ value: null, matchMode: FilterMatchMode.CONTAINS }],
-    },
-  });
-  const [filters, setFilters] = useState(baseFilters);
 
   const showList = (event) => {
-    //console.log("BillStatus:showList", event.target.id);
     const billsForCode = billList.filter((bill) => {
-      if (bill.actionCode == event.target.id) {
+      if (bill.lastActionCode == event.target.id) {
         return bill;
       }
     });
@@ -166,19 +132,7 @@ function BillStatus({ billList, loadDate, actionCodes, sessionDates }) {
             currentPageReportTemplate="{first} to {last} of {totalRecords}"
             style={{ width: "100%" }}
             dataKey="billNumber"
-            filters={filters}
-            // header={renderHeader}
-            // ref={dataTableExport}
             onRowDoubleClick={onRowClicked}
-            globalFilterFields={[
-              "billNumber",
-              "shortTitle",
-              "primarySponsor",
-              "floorSponsor",
-              "subjectList",
-              "sectionsAffected",
-              "actionCodeDesc",
-            ]}
             emptyMessage="Select a status to show bills"
             sortField="lastActionDate"
             sortOrder={-1}
@@ -189,14 +143,11 @@ function BillStatus({ billList, loadDate, actionCodes, sessionDates }) {
               header="#"
               body={billLinkTemplate}
               sortable
-              // filter
-              // filterField="billNumber"
               filterPlaceholder="Bill #"
             ></Column>
             <Column
               field="shortTitle"
               header="Title"
-              // filter
               filterField="shortTitle"
               filterPlaceholder="Search by Title"
             ></Column>
@@ -205,7 +156,6 @@ function BillStatus({ billList, loadDate, actionCodes, sessionDates }) {
               header="Sponsor"
               body={sponsorTemplate}
               sortable
-              // filter
               filterField="primarySponsor"
               style={{ whiteSpace: "nowrap" }}
             ></Column>
@@ -214,23 +164,19 @@ function BillStatus({ billList, loadDate, actionCodes, sessionDates }) {
               header="Fl. Sponsor"
               body={flSponsorTemplate}
               sortable
-              // filter
               filterField="floorSponsor"
               style={{ whiteSpace: "nowrap" }}
             ></Column>
             <Column
               field="actionCodeDesc"
               header="Last Action"
-              // body={buildAction}
               sortable
-              // filter
               filterField="actionCodeDesc"
             ></Column>
             <Column
               field="lastActionDate"
               header="Action Date"
               sortable
-              // filter
               filterField="lastActionDate"
             ></Column>
             <Column

@@ -1,9 +1,9 @@
 - make sure the app can be compiled both front and backend
-- refactor the frontend to use the new Bill bean (rather than BillItem)
 - how to call api from react (eg not useEffect)
-- unit tests
+... unit tests
 
 *** DONE ***
+x refactor the frontend to use the new Bill bean (rather than BillItem)
 x reconfigure for SQLite DB
 x create a sql DDL
 x implement a job(s) to download the data from utleg.gov

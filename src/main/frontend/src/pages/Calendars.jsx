@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Api from "../components/Api";
 import Navigation from "../components/Navigation";
 import CalendarCard from "../components/CalendarCard";
@@ -10,7 +10,7 @@ function Calendars({ billList, loadDate, actionCodes, sessionDates }) {
   const loadData = async () => {
     const api = Api.get();
     await api
-      .doGet("/calendar/bill/order/" + year)
+      .doGet("/bill/calendar/bill/order/")
       .then((response) => response.json())
       .then((data) => {
         setBillOrder(data);

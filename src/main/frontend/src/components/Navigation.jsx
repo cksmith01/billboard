@@ -6,6 +6,9 @@ import { useNavigate } from "react-router-dom";
 import Api from "./Api";
 
 function Navigation({ loadDate, sessionDates }) {
+  if (loadDate == null || loadDate == undefined) {
+    loadDate = new Date();
+  }
   const navigate = useNavigate();
   const items = [
     {
@@ -97,10 +100,16 @@ function Navigation({ loadDate, sessionDates }) {
   };
 
   const looper = () => {
-    setTimeout(() => {
-      document.getElementById("elapsed").innerHTML = elapsedTime();
-      looper();
-    }, 1000);
+    try {
+      setTimeout(() => {
+        const obj = document.getElementById("elapsed");
+        if (obj != null && obj != undefined) 
+          obj.innerHTML = elapsedTime();
+        looper();
+      }, 1000);
+    } catch (error) {
+      console.log('navigation: error', error)
+    }
   };
 
   looper();

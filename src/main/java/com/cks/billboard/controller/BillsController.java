@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.List;
 
 import com.cks.billboard.model.*;
+import com.cks.billboard.model.json.StandingCommittee;
 import com.cks.billboard.service.DataCache;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -53,8 +54,8 @@ public class BillsController extends BaseController {
 	}
 
 	@GetMapping("/committee/list/{year}")
-	public List<Committee> commmitteeList(@PathVariable Integer year) {
-		return billService.getCommitteeList(year);
+	public List<StandingCommittee> commmitteeList(@PathVariable Integer year) {
+		return dataCache.getStandingCommittees();
 	}
 	
 	@GetMapping("/calendar/list/")

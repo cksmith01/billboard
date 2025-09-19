@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Navigation from "../components/Navigation";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
-import { FilterMatchMode, FilterOperator } from "primereact/api";
 import BillDetails from "../components/BillDetails";
 import { Dialog } from "primereact/dialog";
 import Api from "../components/Api";
@@ -12,7 +11,6 @@ function Sponsors({ billList, loadDate, actionCodes, sessionDates }) {
   const [subList, setSubList] = useState([]);
   const [modal, showModal] = useState(false);
   const [selectedBill, setSelectedBill] = useState({});
-
 
   const sponsorMap = new Map();
   const _sponsorMap = new Map();
@@ -48,18 +46,14 @@ function Sponsors({ billList, loadDate, actionCodes, sessionDates }) {
       legCount.floor = legCount.floor + 1;
     }
   });
-  // console.log("_sponsorMap", _sponsorMap);
   for (let [key, value] of _sponsorMap) {
     if (key != null && key != '') {
       sponsorMap.set(key, value);
     }
   }
-  // console.log("sponsorMap", sponsorMap);
 
   const showList = (legObject) => {
-    // console.log(legObject);
     const billsForCode = billList.filter((bill) => {
-      // console.log(bill.sponsorID, "vs", legObject.sponsorId );
       if (bill.sponsorID == legObject.sponsorId) {
         return bill;
       } else if (bill.floorSponsorID == legObject.sponsorId) {
@@ -73,7 +67,6 @@ function Sponsors({ billList, loadDate, actionCodes, sessionDates }) {
 
   const onRowClicked = (row) => {
     row.originalEvent.preventDefault();
-    // console.log("clicked: row", row.data);
     showList(row.data);
   };
 
@@ -112,12 +105,10 @@ function Sponsors({ billList, loadDate, actionCodes, sessionDates }) {
   };
 
   sponsorMap.delete("");
-  // _sponsorMap.delete("");
 
   const sponsorList = [...sponsorMap.values()];
   sponsorList.forEach((legCount) => {
     legCount.total = legCount.count + legCount.floor;
-    // console.log(legCount.name, legCount.count, legCount.floor, legCount.total);
   });
 
   return (
@@ -143,9 +134,7 @@ function Sponsors({ billList, loadDate, actionCodes, sessionDates }) {
             size="small"
             value={sponsorList}
             tableStyle={{ minWidth: "100%", cursor: "pointer" }}
-            // rows={25}
             stripedRows
-            // totalRecords={sponsorMap.size()}
             style={{ width: "100%" }}
             dataKey="name"
             onRowClick={onRowClicked}
