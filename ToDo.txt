@@ -1,3 +1,4 @@
+- consider partitioning the backend json/DB storage into folders for each year(ex: [home]/billboard/2025)
 - make sure the app can be compiled both front and backend
 - how to call api from react (eg not useEffect)
 ... unit tests

@@ -64,8 +64,8 @@ function StatusCard({
         {formatPercent(cardTotal / billList.length)})
       </div>
       <div>
-        {[...codeMap.keys()].map((key) => (
-          <div className={getClass(key)} onClick={showListCallback} id={key}>
+        {[...codeMap.keys()].map((key, row) => (
+          <div className={getClass(key)} onClick={showListCallback} key={key} id={key}>
             {getLabel(key)}: {[...codeMap.get(key)].length}
           </div>
         ))}

@@ -26,7 +26,7 @@ function Committees({ billList, actionCodes, loadDate, sessionDates }) {
       .then((response) => response.json())
       .then((data) => {
         setCommittees(data);
-        console.log("load committees succeeded", data);
+        // console.log("load committees succeeded", data);
       })
       .catch((err) => {
         console.error(err);
@@ -38,8 +38,6 @@ function Committees({ billList, actionCodes, loadDate, sessionDates }) {
     loadData();
     // eslint-disable-next-line
   }, []);
-
-  // console.log('Committees', 'committees', committees.length, 'billList', billList.length);
 
   const committeeMap = new Map();
   // loop through the committees and find the ones that have bills
@@ -53,8 +51,6 @@ function Committees({ billList, actionCodes, loadDate, sessionDates }) {
     committeeMap.set(committee.ownerID, billsForCommittee);
     return committee;
   });
-
-  console.log('committeeMap', committeeMap);
 
   const showList = (event) => {
     setSubList(committeeMap.get(event.target.id));
@@ -157,8 +153,8 @@ function Committees({ billList, actionCodes, loadDate, sessionDates }) {
             overflowY: "auto",
           }}
         >
-          {[...committeeMap.keys()].map((key) => (
-            <div style={{ padding: "5px" }}>
+          {[...committeeMap.keys()].map((key, row) => (
+            <div style={{ padding: "5px" }} key={key+row}>
               {buildCommitteeLink(key)} &nbsp;
               <span className={getClass(key)} onClick={showList} id={key}>
                 {getLabel(key)}: {[...committeeMap.get(key)].length}

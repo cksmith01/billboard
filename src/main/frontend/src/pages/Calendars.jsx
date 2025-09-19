@@ -14,7 +14,7 @@ function Calendars({ billList, loadDate, actionCodes, sessionDates }) {
       .then((response) => response.json())
       .then((data) => {
         setBillOrder(data);
-        console.log("bill order", new Date(), data.length);
+        // console.log("bill order", new Date(), data.length);
       })
       .catch((err) => {
         console.error(err);
