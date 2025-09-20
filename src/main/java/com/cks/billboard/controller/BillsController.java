@@ -1,6 +1,5 @@
 package com.cks.billboard.controller;
 
-import java.io.IOException;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.List;
@@ -18,7 +17,7 @@ import com.cks.billboard.service.BillService;
 
 @RestController
 @RequestMapping("/bill")
-public class BillsController extends BaseController {
+public class BillsController {
 
 	@Autowired
 	BillService billService;

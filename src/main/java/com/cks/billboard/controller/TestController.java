@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/test")
-public class TestController extends BaseController {
+public class TestController {
 
     @Autowired
     MyBatisTableMapper myBatisTableMapper;

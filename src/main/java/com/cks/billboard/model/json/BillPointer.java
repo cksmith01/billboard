@@ -9,8 +9,6 @@ public class BillPointer {
     private String updatetime;
     private String LastActionTime;
 
-    private BillDetail detail;
-
     public BillPointer() {
     }
 

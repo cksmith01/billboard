@@ -18,7 +18,7 @@ import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/info")
-public class InfoController extends BaseController {
+public class InfoController {
 	
 	@GetMapping("/users")
 	public List<SysUser> getUsers() {

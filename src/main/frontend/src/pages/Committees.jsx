@@ -138,7 +138,7 @@ function Committees({ billList, actionCodes, loadDate, sessionDates }) {
             style={{ transform: "scale(.7)" }}
             icon="pi pi-external-link pi2"
           ></Button>
-          Committees
+          Standing Committees
         </div>
         <div
           style={{
