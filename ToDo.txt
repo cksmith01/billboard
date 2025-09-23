@@ -1,0 +1,22 @@
+- the frontend needs to get the session year from the backend rather than on the client
+- consider partitioning the backend json/DB storage into folders for each year(ex: [home]/billboard/2025)
+    ... if not, write an historical
+- how to call api from react (eg not useEffect)
+... unit tests
+
+*** DONE ***
+x when no bills exist (on first run) add a toast to the main page indicating there will be data in the next 15m or so
+    ... added a message
+x refactor the API URLs to follow the convertion: /api/v1/...
+x make sure the app can be compiled both front and backend
+x make sure the app can start/run w/o any supporting files
+x refactor the frontend to use the new Bill bean (rather than BillItem)
+x reconfigure for SQLite DB
+x create a sql DDL
+x implement a job(s) to download the data from utleg.gov
+    developer token: xxxxx.....
+x implement a commandline runner to create the database
+x missing data: onetime, ongoing, effective date ...
+    do you want to get them from:
+        https://s.utleg.gov/bigboard/bill/list/2025
+
