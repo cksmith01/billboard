@@ -60,7 +60,6 @@ function Sponsors({ billList, loadDate, actionCodes, sessionDates }) {
         return bill;
       }
     });
-    console.log('showList', 'setSubList', billsForCode);
     setSubList(billsForCode);
     buildSponsor(legObject);
   };

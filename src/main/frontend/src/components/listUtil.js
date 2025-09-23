@@ -20,7 +20,6 @@ export const removeBill = (billNumber) => {
   const billMap = LocalStorage.create().getBillMap();
   const _billMap = new Map();
   for (const [key, value] of billMap.entries()) {
-    // console.log(key, value);
     const _values = [];
     for (var i = 0; i < value.length; i++) {
       if (billNumber !== value[i].toUpperCase()) {
@@ -40,11 +39,9 @@ export const removeBill = (billNumber) => {
  */
 export const addBillByListName = (listName, billNumber) => {
   if (billNumber == null || billNumber == "") {
-    console.log("addBillByListName: we dont have a bill number");
     return;
   }
   if (listName == null || listName == "") {
-    console.log("addBillByListName: we dont have a list name");
     return;
   }
   billNumber = billNumber.toUpperCase();
@@ -54,12 +51,6 @@ export const addBillByListName = (listName, billNumber) => {
 
   for (let i = 0; i < values.length; i++) {
     if (values[i] === billNumber) {
-      console.log(
-        "addBill: bill # [" +
-          billNumber +
-          "] already exists in list: " +
-          listName
-      );
       return;
     }
   }
@@ -86,13 +77,11 @@ export const addBillByListIndex = (index, billNumber) => {
 export const trackingList = (billNumber) => {
   const hitList = [];
   if (billNumber == null || billNumber === undefined) {
-    console.log("Error: trackingList must have a bill number", billNumber);
     return hitList;
   }
   const billMap = LocalStorage.create().getBillMap();
   for (const [key, value] of billMap.entries()) {
     for (var i = 0; i < value.length; i++) {
-      //console.log("?", billNumber, value[i]);
       if (billNumber === value[i]) {
         hitList[hitList.length] = key;
         break;
@@ -174,9 +163,6 @@ export const changeListName = (index, newName) => {
 export const retrofitBillList = () => {
   const billMap = LocalStorage.create().getBillMap();
   if (billMap != null) {
-    console.log(
-      "retrofitBillList: a bill map already exists in local storage, retrofit aborted"
-    );
     return;
   }
   const listStr = Cookies.get("billboard-bill-list");
@@ -195,10 +181,6 @@ export const retrofitBillList = () => {
   }
   LocalStorage.create().storeBillMap(_billMap);
   Cookies.remove("billboard-bill-list");
-  console.log(
-    "retrofitBillList: bill created and saved in local storage",
-    _billMap
-  );
 };
 
 /**
@@ -210,7 +192,6 @@ export const addListName = (listName) => {
   const billMap = LocalStorage.create().getBillMap();
   [...billMap.keys()].forEach((item) => {
     if (item === listName) {
-      console.log("The list name already exists: " + listName);
       return;
     }
   });

@@ -2,7 +2,6 @@ import React from "react";
 
 function BillCard({ billList, targetCode, cardTitle }) {
   const subset = billList.filter((bill) => {
-    console.log(bill.billNumber, bill.actionCode);
     return bill.actionCode === targetCode;
   });
 

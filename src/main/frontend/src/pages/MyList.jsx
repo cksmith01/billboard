@@ -40,7 +40,6 @@ function MyList({ billList, actionCodes, loadDate, sessionDates }) {
 
   const loadBillList = () => {
     setSubList(getBillArray(billList));
-    console.log(">>>", getBillList());
   };
 
   const addBill = (params) => {
@@ -59,10 +58,7 @@ function MyList({ billList, actionCodes, loadDate, sessionDates }) {
 
   const removeBill = (event) => {
     event.preventDefault();
-
     const billNum = event.target.id;
-    console.log("removeBill clicked", billNum);
-
     if (billNum === null || billNum === "") {
       alert("we dont have a bill number");
     } else {

@@ -34,7 +34,6 @@ function About({ loadDate, sessionDates }) {
           </li>
         ));
         setUserList(userItems);
-        console.log("user list load succeeded", new Date(), data);
       })
       .catch((err) => {
         console.error(err);
@@ -44,9 +43,7 @@ function About({ loadDate, sessionDates }) {
       .doGet("/api/v1/info/cacheClearDate")
       .then((response) => response.json())
       .then((data) => {
-        console.log("cache clear date succeeded", new Date(), data);
         const clearDate = new Date(data);
-        console.log("???", clearDate.toLocaleDateString());
         setCacheClearDate(clearDate);
       })
       .catch((err) => {

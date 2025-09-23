@@ -32,7 +32,6 @@ function MyLists({ billList, actionCodes, loadDate, sessionDates }) {
   const billMap = getBillMap();
 
   const showList = (e) => {
-    // console.log("showList", e.index);
     setActiveIndex(e.index);
     setSubList(getBillListByIndex(e.index, billList));
   };
@@ -61,7 +60,6 @@ function MyLists({ billList, actionCodes, loadDate, sessionDates }) {
   const deleteBill = (event) => {
     event.preventDefault();
     const billNum = event.target.id;
-    //console.log("deleteBill clicked", billNum);
     if (billNum === null || billNum === "") {
       alert("we dont have a bill number");
     } else {
@@ -76,7 +74,6 @@ function MyLists({ billList, actionCodes, loadDate, sessionDates }) {
       "Enter the name of the new list you'd like to create."
     );
     if (newListName === null || newListName === "") {
-      console.log("we dont have a new list name");
     } else if (newListName === "None" || newListName === "none") {
       alert("None can not be used as a list name");
     } else {
@@ -93,7 +90,7 @@ function MyLists({ billList, actionCodes, loadDate, sessionDates }) {
     }
     const billNumber = prompt("Enter the bill number you'd like to add.");
     if (billNumber === null || billNumber === "") {
-      console.log("addNewBill: we dont have a bill #");
+      //console.log("addNewBill: we dont have a bill #");
     } else {
       addBillByListIndex(activeIndex, billNumber);
       setSubList(getBillListByIndex(activeIndex, billList));

@@ -29,7 +29,6 @@ export default class LocalStorage {
         "billMap",
         JSON.stringify(Array.from(billMap.entries()))
       );
-      console.log('update bill map', billMap);
     }
   }
 

@@ -26,7 +26,6 @@ function Committees({ billList, actionCodes, loadDate, sessionDates }) {
       .then((response) => response.json())
       .then((data) => {
         setCommittees(data);
-        // console.log("load committees succeeded", data);
       })
       .catch((err) => {
         console.error(err);
@@ -47,7 +46,6 @@ function Committees({ billList, actionCodes, loadDate, sessionDates }) {
         return bill;
       }
     });
-    // console.log('-->', committee.ownerID, billsForCommittee);
     committeeMap.set(committee.ownerID, billsForCommittee);
     return committee;
   });

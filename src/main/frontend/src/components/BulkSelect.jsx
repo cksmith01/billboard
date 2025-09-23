@@ -4,7 +4,6 @@ import { Button } from "primereact/button";
 import { getListNames, addBillByListName } from "./listUtil";
 
 function BulkSelect({ billNumArray, callBack }) {
-  console.log('BulkSelect', callBack);
   const [selectedListName, setSelectedListName] = useState("None");
   const listNames = getListNames();
   const listOptions = new Array({ name: "None", code: "None" });

@@ -2,7 +2,6 @@ import React from "react";
 import BulkSelect from "./BulkSelect";
 
 function BulkAdd({ billNumArray, billList, callBack }) {
-  console.log('BulkAdd', callBack);
   const getTitle = (num) => {
     let t = "";
     for (let i = 0; i < billList.length; i++) {

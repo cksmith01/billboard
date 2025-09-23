@@ -18,7 +18,6 @@ function StatusCard({
     if (code.type === "action") {
       if (statusCodeList.indexOf(code.code + ",") > -1) {
         const billsForCode = billList.filter((bill) => {
-          //if (cardTitle === "Governor") console.log("->", bill.lastActionCode, code.code);
           if (bill.lastActionCode == code.code) {
             return bill;
           }
@@ -44,7 +43,6 @@ function StatusCard({
       }
     });
     if (labels[0] === undefined) {
-      console.log("could not find label for: " + code);
       return "?";
     }
     return labels[0].description;

@@ -5,7 +5,6 @@ const notBlank = (item) => {
 };
 
 const formatDate = (d) => {
-  //console.log("formatDate", d);
   if (notBlank(d)) {
     return format(d, "M/d");
   }
@@ -25,12 +24,6 @@ const dateAafterB = (a, b) => {
 };
 
 const checkForBoth = (bill, action, event) => {
-  // if (bill.billNumber === "SB0062") {
-  //   console.log("action", action, "event", event, bill.failedOnFloorAction);
-  //   console.log("bill.failedOnFloorDate", bill.failedOnFloorDate);
-  //   console.log("bill.hpass3", bill.hpass3);
-  // }
-
   if (action === "hpass3") {
     if (
       bill.failedOnFloorAction === "HFAIL" &&
@@ -42,7 +35,6 @@ const checkForBoth = (bill, action, event) => {
         event.icon = "pi pi-times";
         event.color = "#CC0000";
       } else {
-        console.log('failedOnFloorDate is not after hpass3')
         event.date = formatDate(bill.hpass3);
       }
     }
@@ -58,26 +50,15 @@ const checkForBoth = (bill, action, event) => {
         event.icon = "pi pi-times";
         event.color = "#CC0000";
       } else {
-        console.log('failedOnFloorDate is not after spass3')
         event.date = formatDate(bill.spass3);
       }
     }
   }
 
-  // console.log("event final", event);
-
   return event;
 };
 
 export const buildEvents = (bill, abbr) => {
-  // if (bill.billNumber === "SB0062") {
-  //   console.log("buildEvents", bill);
-  //   console.log("failedOnFloorDate", bill.failedOnFloorDate);
-  //   console.log("hpass3", bill.hpass3);
-
-  //   dateAafterB(bill.hpass3, bill.failedOnFloorDate);
-  // }
-
   const events = new Array();
   /**
    * HOUSE BILLS ---------------------

@@ -30,7 +30,6 @@ function App() {
       .then((response) => response.json())
       .then((data) => {
         setBillList(data);
-        // console.log("load bills succeeded", new Date(), data.length);
         setLoadDate(new Date());
       })
       .catch((err) => {
@@ -38,12 +37,10 @@ function App() {
       });
 
     await api
-      //.doGet("/bill/actionCodes/" + year)
       .doGet("/api/v1/bill/actionAndOwnerCodes/")
       .then((response) => response.json())
       .then((data) => {
         setActionCodes(data);
-        // console.log("load actionCodes succeeded", new Date(), data.length);
       })
       .catch((err) => {
         console.error(err);
@@ -54,7 +51,6 @@ function App() {
       .then((response) => response.json())
       .then((data) => {
         setSessionDates(data);
-        // console.log("load sessionDates succeeded", new Date(), data.length);
       })
       .catch((err) => {
         console.error(err);
