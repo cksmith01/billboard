@@ -52,7 +52,7 @@ public class ControllerLoggingAspect extends EventLogable {
             if (e != null) {
                 super.eventLog(className, "Error: "+e.getMessage());
             } else {
-                super.eventLog(className, "completed");
+                //super.eventLog(className, "completed");
             }
         }
         if (e != null) throw e;

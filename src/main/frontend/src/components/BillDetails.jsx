@@ -83,12 +83,12 @@ function BillDetails({ bill }) {
         <span className="fw-b">Fiscal Analyst</span>: {bill.lfaAnalyst}
       </div>
       <div className="flex justify-between p5">
-        <Button
+        {/* <Button
           onClick={showJson}
           title="JSON"
           style={{ transform: "scale(.7)" }}
           icon="pi pi-code"
-        ></Button>
+        ></Button> */}
         &nbsp;
         <Button
           onClick={showBill}
