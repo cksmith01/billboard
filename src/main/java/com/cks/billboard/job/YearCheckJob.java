@@ -10,6 +10,8 @@ import java.util.Calendar;
 /**
  * If the application runs over long periods of time this will increment the
  * data year on Dec 15 as new bills are becoming public
+ *
+ * @author CKSmith
  */
 
 @Component

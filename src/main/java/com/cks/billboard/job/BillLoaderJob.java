@@ -139,10 +139,6 @@ public class BillLoaderJob extends BaseLoader {
                 }
             }
 
-//            if (!pointer.getNumber().equals("SB0001")) {
-//                continue;
-//            }
-
             log.info("fetching detail for: " + pointer.getNumber() + "...");
             JsonNode node = restClient.get()
                     .uri("bills/" + year + "/" + pointer.getNumber() + "/" + token)

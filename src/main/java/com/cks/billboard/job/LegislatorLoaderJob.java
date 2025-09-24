@@ -20,6 +20,8 @@ import java.util.logging.Logger;
 /**
  * This job calls the API for any changes to the legislators, stores it on the server
  * so that it can be easily reloaded and then updates the cache (see DataCache)
+ *
+ * @author CKSmith
  */
 
 @Component

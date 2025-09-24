@@ -8,6 +8,8 @@ import java.util.List;
 /**
  * This job calls the API for committee meeting information, stores it on the server
  * so that it can be easily reloaded and then updates the cache (see DataCache)
+ *
+ * @author CKSmith
  */
 
 @Component

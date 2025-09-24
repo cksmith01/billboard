@@ -21,6 +21,8 @@ import java.util.logging.Logger;
  *      the bigboard app that I built while at the legislature.
  *
  *      Note: At some point they will remove the app!
+ *
+ *      @author CKSmith
  */
 
 @Component

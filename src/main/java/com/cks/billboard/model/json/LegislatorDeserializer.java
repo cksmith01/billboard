@@ -9,8 +9,11 @@ import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 
 public class LegislatorDeserializer extends StdDeserializer<Legislator> {
+
+    Logger logger = Logger.getLogger(this.getClass().getName());
 
     public LegislatorDeserializer() {
         this(null);
@@ -39,20 +42,16 @@ public class LegislatorDeserializer extends StdDeserializer<Legislator> {
         String fullName = "", formatName = "", id = "", image = "", house = "", party = "", email = "", position = "";
 
         try {
-            fullName = node.get("fullName").asText();
-            formatName = node.get("formatName").asText();
-            id = node.get("id").asText();
-            image = node.get("image").asText();
-            house = node.get("house").asText();
-            party = node.get("party").asText();
-            email = node.get("email").asText();
-            try {
-                position = node.get("position").asText();
-            } catch (Exception e) {
-                // eat it - if they don't have a leadership role the prop won't be there
-            }
+            fullName = safeRead(node, "fullName");
+            formatName = safeRead(node, "formatName");
+            id = safeRead(node, "id");
+            image = safeRead(node, "image");
+            house = safeRead(node, "house");
+            party = safeRead(node, "party");
+            email = safeRead(node, "email");    // this can be absent
+            position = safeRead(node, "position");  // this is often absent
         } catch (Exception e) {
-            System.err.println(e.getMessage());
+            logger.severe(e.getMessage());
         }
 
         return new Legislator(
@@ -60,5 +59,15 @@ public class LegislatorDeserializer extends StdDeserializer<Legislator> {
                 commiteeList
         );
 
+    }
+
+    private String safeRead(JsonNode node, String property) {
+        String val = "";
+        try {
+            val = node.get(property).asText();
+        } catch (Exception e) {
+            logger.info("error ["+e.getMessage()+"] reading property: " + property + " in JsonNode");
+        }
+        return val;
     }
 }

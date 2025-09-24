@@ -80,6 +80,7 @@ public class SqliteInitializer implements CommandLineRunner {
     }
 
     private static final String SCHEMA = """
+            PRAGMA journal_mode=WAL;
             CREATE TABLE event_log (event_id INTEGER PRIMARY KEY AUTOINCREMENT, event_date DATETIME DEFAULT CURRENT_TIMESTAMP, event_type TEXT NOT NULL, event_desc TEXT NOT NULL, duration_seconds REAL);
             INSERT INTO event_log (event_date, event_type, event_desc, duration_seconds) VALUES (datetime('now'), 'SQLiteInitializer', 'Database creation', '0.0');
             """;
