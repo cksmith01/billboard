@@ -121,7 +121,7 @@ function Board(props) {
   //   effectRan.current = true;
   // }, []);
 
-  const buildAction = (cell, row) => {
+  const buildAction = (cell, w) => {
     return (
       <>
         {

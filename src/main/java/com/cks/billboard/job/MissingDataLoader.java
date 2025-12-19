@@ -3,6 +3,7 @@ package com.cks.billboard.job;
 import com.cks.billboard.Constants;
 import com.cks.billboard.model.json.MissingElement;
 import com.cks.billboard.service.DataCache;
+import com.cks.billboard.util.Strings;
 import com.fasterxml.jackson.databind.JsonNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -14,15 +15,15 @@ import java.util.logging.Logger;
 
 /**
  * The API data sets don't include the following:
- *      <li>onetime funding</li>
- *      <li>ongoing funding</li>
- *      <li>effective date</li>
- *      ... this job is used to supplement the missing data from
- *      the bigboard app that I built while at the legislature.
+ * <li>onetime funding</li>
+ * <li>ongoing funding</li>
+ * <li>effective date</li>
+ * ... this job is used to supplement the missing data from
+ * the bigboard app that I built while at the legislature.
+ * <p>
+ * Note: At some point they will remove the app!
  *
- *      Note: At some point they will remove the app!
- *
- *      @author CKSmith
+ * @author CKSmith
  */
 
 @Component
@@ -33,7 +34,7 @@ public class MissingDataLoader extends BaseLoader {
     @Autowired
     DataCache dataCache;
 
-//        @Scheduled(cron = "0 */1 * ? * *") // <-- every min
+    //        @Scheduled(cron = "0 */1 * ? * *") // <-- every min
     // @Scheduled(cron = "0 0 * * * *") // ... once per hour
     @Scheduled(cron = "0 0 * * JAN-MAR ?") // ... once per hour every day in jan thru mar
     public void run() throws Exception {
@@ -49,10 +50,14 @@ public class MissingDataLoader extends BaseLoader {
 
         for (JsonNode node : nodes) {
 
+            long onetime = 0l;
+            long ongoing = 0l;
             String _onetime = node.get("onetime").asText();
             String _ongoing = node.get("ongoing").asText();
-            long onetime = Double.valueOf(_onetime).longValue();
-            long ongoing = Double.valueOf(_ongoing).longValue();
+            if (Strings.notBlank(_onetime) && !_onetime.equals("null"))
+                onetime = Double.valueOf(_onetime).longValue();
+            if (Strings.notBlank(_ongoing) && !_ongoing.equals("null"))
+                ongoing = Double.valueOf(_ongoing).longValue();
 
 //            String bn = node.get("billNumber").asText();
 //            if (bn.equals("SB0001")) {

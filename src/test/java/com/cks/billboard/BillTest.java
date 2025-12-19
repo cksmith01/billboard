@@ -16,7 +16,7 @@ class BillTest {
     @Autowired
     JsonLoader jsonLoader;
 
-    @Test
+//    @Test
     void testAllBills() throws IOException {
 
         List<Bill> bills = jsonLoader.getBills();

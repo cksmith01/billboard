@@ -152,10 +152,12 @@ public class BillBuilder {
 
         // loop through action history and set the values
         if (Strings.isBlank(bill.getLastActionDesc())) {
-            ActionHistory _ah = detail.getActionHistory().get(detail.getActionHistory().size() - 1);
-            bill.setLastActionDesc(_ah.description());
-            bill.setLastActionDate(_ah.actionDate());
-            bill.setLastActionCode(_ah.actionCode());
+            if (detail.getActionHistory() != null && detail.getActionHistory().size() > 0) {
+                ActionHistory _ah = detail.getActionHistory().getLast();
+                bill.setLastActionDesc(_ah.description());
+                bill.setLastActionDate(_ah.actionDate());
+                bill.setLastActionCode(_ah.actionCode());
+            }
         }
 
         int year = Calendar.getInstance().get(Calendar.YEAR);

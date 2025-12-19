@@ -1,10 +1,13 @@
+*** TODO ***
+- reading calendar data ... what does it look like
+- refactor out BillService
 - the frontend needs to get the session year from the backend rather than on the client
 - consider partitioning the backend json/DB storage into folders for each year(ex: [home]/billboard/2025)
     ... if not, write an historical
-- how to call api from react (eg not useEffect)
 ... unit tests
 
 *** DONE ***
+x add dockerfile
 x when no bills exist (on first run) add a toast to the main page indicating there will be data in the next 15m or so
     ... added a message
 x refactor the API URLs to follow the convertion: /api/v1/...
