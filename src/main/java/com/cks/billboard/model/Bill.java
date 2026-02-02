@@ -36,6 +36,7 @@ public class Bill {
     private String lastActionDate;
     private String effectiveDate;
     private String link;
+    private String json;
     private String trackingId;
     private String updateTime;
 
@@ -57,5 +58,7 @@ public class Bill {
     private String GovDate;
     private String failedOnFloorDate;
     private String failedOnFloorAction;
+
+    private String fiscalBill = "N";
 
 }

@@ -10,10 +10,16 @@ import java.util.Optional;
 
 public class BillBuilder {
 
+    private String developerKey;
+
     private BillDetail detail;
     private List<Legislator> legislators;
     private List<LegislativeCode> ownerCodes;
     private List<MissingElement> missingElements;
+
+    public void setDeveloperKey(String developerKey) {
+        this.developerKey = developerKey;
+    }
 
     public BillDetail getDetail() {
         return detail;
@@ -66,6 +72,7 @@ public class BillBuilder {
             }
         }
 
+        bill.setLastActionCode(detail.getLastAction());
         bill.setActionCodeDesc(detail.getLastAction());
         bill.setLastActionDate(detail.getLastActionDate());
 
@@ -153,7 +160,7 @@ public class BillBuilder {
         // loop through action history and set the values
         if (Strings.isBlank(bill.getLastActionDesc())) {
             if (detail.getActionHistory() != null && detail.getActionHistory().size() > 0) {
-                ActionHistory _ah = detail.getActionHistory().getLast();
+                ActionHistory _ah = detail.getActionHistory().get(detail.getActionHistory().size() - 1);
                 bill.setLastActionDesc(_ah.description());
                 bill.setLastActionDate(_ah.actionDate());
                 bill.setLastActionCode(_ah.actionCode());
@@ -167,6 +174,9 @@ public class BillBuilder {
             } catch (NumberFormatException e) { /* just eat it */ }
         }
         bill.setLink("https://le.utah.gov/~" + year + "/bills/static/" + bill.getBillNumber() + ".html");
+
+        // example: https://glen.le.utah.gov/bills/2018GS/HB0001/<developer key>
+        bill.setJson("https://glen.le.utah.gov/bills/" + detail.getSessionID() + "/" + bill.getBillNumber() + "/");
 
         if (Strings.isBlank(bill.getOwner()) && Strings.notBlank(detail.getLastActionOwner())) {
             Optional<LegislativeCode> code =
@@ -190,6 +200,12 @@ public class BillBuilder {
             });
         }
 
+        this.setMissingElements(bill);
+
+        return bill;
+    }
+
+    public void setMissingElements(Bill bill) {
         if (missingElements != null && missingElements.size() > 0) {
             missingElements.stream().forEach(e -> {
                 if (e.fileNumber().equals(bill.getFileNumber())) {
@@ -201,7 +217,5 @@ public class BillBuilder {
                 }
             });
         }
-
-        return bill;
     }
 }

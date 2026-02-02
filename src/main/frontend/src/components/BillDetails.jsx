@@ -18,6 +18,8 @@ function BillDetails({ bill }) {
     });
   };
 
+  console.log("bill", bill);
+
   const showJson = () => {
     window.open(bill.json + Api.USER_JSON_KEY, "_blank");
   };
@@ -83,18 +85,18 @@ function BillDetails({ bill }) {
         <span className="fw-b">Fiscal Analyst</span>: {bill.lfaAnalyst}
       </div>
       <div className="flex justify-between p5">
-        {/* <Button
-          onClick={showJson}
-          title="JSON"
-          style={{ transform: "scale(.7)" }}
-          icon="pi pi-code"
-        ></Button> */}
-        &nbsp;
         <Button
           onClick={showBill}
           title="Go To Bill"
           style={{ transform: "scale(.7)" }}
           icon="pi pi-external-link"
+        ></Button>
+        &nbsp;
+        <Button
+          onClick={showJson}
+          title="JSON"
+          style={{ transform: "scale(.7)" }}
+          icon="pi pi-code"
         ></Button>
       </div>
     </div>

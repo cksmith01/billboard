@@ -65,6 +65,7 @@ a {
   color: #4475e8;
   text-decoration: inherit;
 }
+
 a:hover {
   color: #424bee;
 }
@@ -95,11 +96,12 @@ button {
   color: #6e8eda;
   outline: transparent;
 }
+
 button:hover {
   /* box-shadow: #8396ed 2px 2px 1px; */
   /* border: 1px #7c91f1 solid; */
   /* color: #5e85e0; */
-  background-color: #6e8eda;  
+  background-color: #6e8eda;
   color: #fff;
   outline: transparent;
 }
@@ -107,7 +109,11 @@ button:hover {
 .p-column-filter-menu-button:hover svg {
   color: #fff;
 }
-button:hover .p-button-icon, button:hover a, button:hover i, .p-button:hover i {
+
+button:hover .p-button-icon,
+button:hover a,
+button:hover i,
+.p-button:hover i {
   color: #fff;
 }
 
@@ -127,31 +133,39 @@ button:focus-visible {
   outline: transparent;
 }
 
-.ui-datatable-resizable thead th, .ui-datatable-resizable tbody td, .ui-datatable-resizable tfoot td {
+.ui-datatable-resizable thead th,
+.ui-datatable-resizable tbody td,
+.ui-datatable-resizable tfoot td {
   white-space: nowrap;
   overflow: hidden;
   border-width: 1px;
   border-style: none;
   text-overflow: ellipsis;
-  padding: 0.5px!important;
+  padding: 0.5px !important;
 }
+
 .p-datatable-header {
   text-align: center;
   padding: 0;
   margin: 0;
 }
+
 .p-datatable-tbody * td {
   font-size: 85%;
   padding: 2px;
   vertical-align: top;
 }
-.p-datatable-thead * th, .p-column-title {
+
+.p-datatable-thead * th,
+.p-column-title {
   font-size: 90%;
   padding: 2px;
   white-space: nowrap;
 }
 
-.p-paginator, .p-dropdown-trigger, .p-inputtext {
+.p-paginator,
+.p-dropdown-trigger,
+.p-inputtext {
   font-size: 90%;
   border-radius: 7px;
 }
@@ -175,9 +189,10 @@ button:focus-visible {
   font-size: 90%;
 }
 
-.p-datatable.p-datatable-striped .p-datatable-tbody > tr.p-row-odd {
+.p-datatable.p-datatable-striped .p-datatable-tbody>tr.p-row-odd {
   background-color: rgba(200, 200, 200, 0.1);
 }
+
 .p-datatable-thead * th {
   background-color: #dbd9d9;
 }
@@ -247,7 +262,9 @@ button:focus-visible {
   border: 1px #fff solid;
   border-radius: 5px;
 }
-.linkDiv:hover, .linkDiv2:hover {
+
+.linkDiv:hover,
+.linkDiv2:hover {
   background-color: #f7faa7;
 }
 
@@ -259,6 +276,7 @@ button:focus-visible {
   border-radius: 5px;
   background-color: #eee;
 }
+
 .linkDiv2:hover {
   background-color: #f7faa7;
 }
@@ -266,7 +284,8 @@ button:focus-visible {
 .p-column-filter-menu-button {
   margin-left: 4px;
 }
-.p-column-filter-menu-button > svg {
+
+.p-column-filter-menu-button>svg {
   color: #666;
   margin: -3px;
 }
@@ -275,13 +294,15 @@ button:focus-visible {
   z-index: 10000;
 }
 
-.p-dialog, .p-dialog-content {
+.p-dialog,
+.p-dialog-content {
   overflow-x: hidden;
 }
 
 .fw-b {
   font-weight: bold;
 }
+
 .p5 {
   padding: 5px;
 }
@@ -305,7 +326,9 @@ button:focus-visible {
   margin-top: 0;
   padding: 0;
 }
-.p-inputswitch.p-inputswitch-checked .p-inputswitch-slider, .p-inputswitch .p-inputswitch-slider {
+
+.p-inputswitch.p-inputswitch-checked .p-inputswitch-slider,
+.p-inputswitch .p-inputswitch-slider {
   box-shadow: none;
 }
 
@@ -339,7 +362,7 @@ button:focus-visible {
   border: 0px #2196F3 solid;
   border-radius: 5px;
   font-weight: bold;
-  background-color: #eee; 
+  background-color: #eee;
   text-indent: 10px;
 }
 
@@ -358,37 +381,49 @@ button:focus-visible {
 .mutedLink {
   cursor: none;
 }
+
 .mutedLink:hover {
   /* cursor: pointer; */
 }
+
 .p-menubar {
   background-color: #4475e8;
   color: #fff;
   position: sticky;
-  position: -webkit-sticky; 
-  z-index: 1000; 
-  top: 0; 
+  position: -webkit-sticky;
+  z-index: 1000;
+  top: 0;
 }
+
 .sticky {
   position: fixed;
   top: 0;
   width: 100%;
 }
+
 .p-menuitem-text {
   color: #fff;
   /* font-weight: bold; */
 }
+
 .p-menuitem-link:hover {
   background-color: #6589df;
   border-radius: 0;
 }
-.p-datatable, .p-datatable-wrapper, .p-datatable-header, .p-datatable-footer, .p-paginator-bottom {
+
+.p-datatable,
+.p-datatable-wrapper,
+.p-datatable-header,
+.p-datatable-footer,
+.p-paginator-bottom {
   background-color: #fff;
   border: 0;
 }
+
 .p-datatable-table:hover tr {
   cursor: pointer;
 }
+
 .pi {
   color: #fff;
 }
@@ -396,6 +431,7 @@ button:focus-visible {
 .pi2 {
   color: #4475e8;
 }
+
 .billCircled {
   border: 1px orange solid;
   border-radius: 5px;
@@ -405,6 +441,7 @@ button:focus-visible {
   color: darkgreen;
   font-weight: bold;
 }
+
 .fiscalImpact {
   background-color: #DDFFDD;
   border-radius: 5px;
@@ -415,12 +452,15 @@ button:focus-visible {
   color: #666;
   font-size: 90%;
 }
+
 .p-tabview-nav-link:hover {
   color: #333;
 }
+
 [aria-selected|="true"] {
   color: #4475e8;
 }
+
 .p-dropdown {
   border-radius: 7px;
 }
@@ -435,6 +475,7 @@ button:focus-visible {
 input::placeholder {
   color: #ccc;
 }
+
 .untracked {
   background-color: #fff transparent;
   padding: 2px 4px;
@@ -442,37 +483,43 @@ input::placeholder {
 }
 
 .tracked {
-  background-color: rgb(255,165,0,.5);
+  background-color: rgb(255, 165, 0, .5);
   padding: 1px 4px;
   border-radius: 3px;
 }
+
 .circle-icon {
-    height: 16px;
-    width: 16px;
-    text-align: center;
-    background-color: #bbb;
-    border-radius: 50%;
-    display: inline-block;
-    padding-top: 1px;
-    font-weight: bold;
+  height: 16px;
+  width: 16px;
+  text-align: center;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  padding-top: 1px;
+  font-weight: bold;
 }
+
 .p-timeline-event-content {
   padding-top: 5px;
   max-height: 22px;
 }
+
 .p-timeline-event-opposite {
   padding: 0;
   max-height: 25px;
 }
+
 /* this doesn't seem to work... */
 .p-timeline-event-opposite:last-of-type {
   padding-top: 5px;
   min-width: 50px;
   background-color: orange;
 }
+
 .revenue {
   color: green;
 }
+
 .revenue::before {
   content: '$';
 }
@@ -480,12 +527,15 @@ input::placeholder {
 .cost {
   color: red;
 }
+
 .cost::before {
   content: '$';
 }
+
 .zero {
   color: black;
 }
+
 .zero::before {
   content: '$';
 }
@@ -495,4 +545,11 @@ input::placeholder {
   font-size: 10pt;
   color: darkorange;
   text-align: right;
+}
+
+.sponsor {
+  font-size: 90%;
+  color: #999;
+  font-style: italic;
+  font-weight: normal;
 }

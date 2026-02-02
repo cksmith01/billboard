@@ -38,6 +38,7 @@ public class BillsController {
 		 * 	this returns no data for 2021, and a few years back.  There is a gap in Sessions.DocMasterGlobal (or maybe DocMasterMemo)
 		 * 	that I think needs to be fixed at some point. Consider, writing a different query for previous years
 		 */
+
 		return dataCache.getBillList();
 	}
 

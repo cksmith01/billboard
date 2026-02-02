@@ -41,17 +41,27 @@ public class BillLoaderJob extends BaseLoader {
     @Value("${throttle.delay}")
     Integer throttleDelay;
 
+    @Value("${le.utah.gov.token}")
+    String developerKey;
+
+    @Value("${fiscal.limit}")
+    Float fiscalLimit;
+
     @Autowired
     DataCache dataCache;
 
     Set<String> runDates = new TreeSet<>();
 
+    boolean running = false;
+
     /**
      * @throws Exception
      */
-//    @Scheduled(cron = "0 */2 * ? * *") // <-- every 2min
+//    @Scheduled(cron = "0 */2 * ? * *") // <-- every 5min
     @Scheduled(cron = "0 */15 * ? * *") // <-- every 15min
     public void run() throws Exception {
+
+//        if (running) return;  // testing
 
         boolean run = false;
         int month = Calendar.getInstance().get(Calendar.MONTH);
@@ -66,6 +76,8 @@ public class BillLoaderJob extends BaseLoader {
         }
 
         super.start();
+
+//        running = true;   // testing
 
         String session = dataCache.getDataYear() + "GS";
         log.info("restClient: " + restClient + " token: " + super.token + " throttleDelay: " + throttleDelay);
@@ -86,6 +98,10 @@ public class BillLoaderJob extends BaseLoader {
                 .sorted(Comparator.comparing(Bill::getLastActionDate).reversed())
                 .collect(Collectors.toList());
 
+        sorted.forEach(bill -> {
+            if (bill.getFiscalTotal() > fiscalLimit) bill.setFiscalBill("Y");
+        });
+
         // 3. save the data
         super.writeFile(sorted, Constants.BILLS_JSON);
 
@@ -96,6 +112,7 @@ public class BillLoaderJob extends BaseLoader {
 
         runDates.add(Dates.formatDBShort(null));
 
+//        running = false;  // testing
     }
 
     private List<BillPointer> loadList(String session) throws Exception {
@@ -128,13 +145,23 @@ public class BillLoaderJob extends BaseLoader {
 
         int count = 0;
 
+        BillBuilder builder = new BillBuilder();
+        builder.setOwnerCodes(dataCache.getOwnerCodes());
+        builder.setLegislators(dataCache.getLegislators());
+        builder.setMissingElements(dataCache.getMissingElements());
+        // builder.setDeveloperKey(developerKey);
+
+        // TODO we need a mechanism to refresh the bill data against missingElements.json b/c that data may have chanaged
+
         for (BillPointer pointer : list) {
             // ignore if we have the most current version
             if (map.containsKey(pointer.getTrackingID())) {
                 Bill bill = map.get(pointer.getTrackingID());
                 if (bill.getUpdateTime().equals(pointer.getUpdatetime())) {
                     bills.put(bill.getTrackingId(), bill);
-                    log.info("skipping: " + bill.getBillNumber() + " ... data hasn't changed");
+                    // missing elements data may have updated so let's make sure we have the latest...
+                    builder.setMissingElements(bill);
+                    //log.info("skipping: " + bill.getBillNumber() + " ... data hasn't changed");
                     continue;
                 }
             }
@@ -146,11 +173,7 @@ public class BillLoaderJob extends BaseLoader {
 
             BillDetail detail = objectMapper.readValue(node.toString(), BillDetail.class);
 
-            BillBuilder builder = new BillBuilder();
             builder.setDetail(detail);
-            builder.setOwnerCodes(dataCache.getOwnerCodes());
-            builder.setLegislators(dataCache.getLegislators());
-            builder.setMissingElements(dataCache.getMissingElements());
             Bill bill = builder.build();
             bill.setUpdateTime(pointer.getUpdatetime());
 

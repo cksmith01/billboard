@@ -27,8 +27,9 @@ function CalendarCard({ cardTitle, ownerCodes, billList }) {
   }
 
   const getClass = (bill) => {
-    let clsName = ""
-    if (bill.actionCode === "HCIRCLED" || bill.actionCode === "SCIRCLED") {
+    //console.log('getClass', 'bill', bill.fiscalBill, bill.fiscalImpact);
+    let clsName = "";
+    if (bill.lastActionDesc.toLowerCase().indexOf(' circled') > -1) {
       clsName = "billCircled";
     }
     if (bill.fiscalBill === "Y") {
@@ -52,7 +53,8 @@ function CalendarCard({ cardTitle, ownerCodes, billList }) {
             className={getClass(bill)}
             style={{ padding: "2px", fontSize: "95%", margin: "2px" }}
           >
-            {billLinkTemplate(bill)} {bill.shortTitle}
+            {billLinkTemplate(bill)} {bill.shortTitle}&nbsp;
+            <span className="sponsor">{bill.primarySponsor}</span>
           </div>
         ))}
       </div>
